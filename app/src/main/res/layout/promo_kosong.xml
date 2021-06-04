@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tampilan_semua">
+
+    <LinearLayout
+        android:id="@+id/judul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="30dp">
+
+        <ImageView
+            android:id="@+id/panah_topup"
+            android:layout_width="30dp"
+            android:layout_height="34dp"
+            android:src="@drawable/panah_back"
+            android:layout_gravity="center_vertical">
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Promos"
+            android:textColor="@color/putih"
+            android:fontFamily="@font/poppins_semi"
+            android:textSize="20sp"
+            android:layout_marginStart="30dp">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="50dp">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/icon_pricetag"
+            android:layout_centerHorizontal="true">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/ops"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/icon"
+            android:text="Oops!"
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/poppins_semi"
+            android:textColor="@color/hitam"
+            android:textSize="24sp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ops"
+            android:text="Looks Like you don't have any voucher"
+            android:textAlignment="center"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/hitam"
+            android:textSize="20sp"
+            android:layout_marginTop="15dp">
+
+        </TextView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tampilan_semua">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="30dp">
+
+        <ImageView
+            android:id="@+id/panah_scanner_transaksi"
+            android:layout_width="30dp"
+            android:layout_height="34dp"
+            android:src="@drawable/panah_back"
+            android:layout_gravity="center_vertical">
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay for Canteen"
+            android:textColor="@color/putih"
+            android:fontFamily="@font/poppins_semi"
+            android:textSize="20sp"
+            android:layout_marginStart="30dp">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/scanner_view"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="130dp"
+        app:autoFocusButtonColor="@color/birudongker"
+        app:autoFocusButtonVisible="true"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        app:flashButtonColor="@color/birudongker"
+        app:flashButtonVisible="true"
+        app:frameColor="@color/birudongker"
+        app:frameCornersSize="40dp"
+        app:frameCornersRadius="20dp"
+        app:frameAspectRatioWidth="1"
+        app:frameAspectRatioHeight="1"
+        app:frameSize="0.9"
+        app:frameThickness="5dp"
+        app:maskColor="@color/background"/>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Scan QR Code to Pay for Canteen!"
+        android:layout_below="@id/scanner_view"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poppins_semi"
+        android:textColor="@color/hitam"
+        android:textSize="20sp"
+        android:textAlignment="center">
+
+    </TextView>
+
+</RelativeLayout>

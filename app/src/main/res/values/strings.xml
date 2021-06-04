@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">DompetFT</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="available_promos">Available Promos</string>
+    <string name="my_promo">My Promo</string>
+    <string name="potongan_sebesar_rp">Potongan sebesar Rp</string>
+    <string name="pay_for_canteen">Pay for Canteen</string>
+    <string name="check_here_for_promos">Check here for promos!</string>
+    <string name="username_log">Username</string>
+    <string name="password_log">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="log">Log</string>
+    <string name="in">In</string>
+    <string name="first_time_user">First time user?</string>
+    <string name="sign_up_log">Sign Up</string>
+    <string name="username">Username</string>
+    <string name="e_mail">E-mail</string>
+    <string name="nik_nim">NIK / NIM</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or">OR</string>
+    <string name="login_satulagi">LOGIN</string>
+    <string name="full_name">Full name</string>
+</resources>

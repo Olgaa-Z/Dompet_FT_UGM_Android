@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".utama.MainActivity">
+
+  <FrameLayout
+      android:id="@+id/container"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+  </FrameLayout>
+
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
+      android:layout_width="match_parent"
+      android:layout_height="120dp"
+      android:layout_alignParentBottom="true">
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:fabCradleMargin="10dp"
+        app:fabCradleRoundedCornerRadius="10dp"
+        app:fabCradleVerticalOffset="10dp">
+
+      <com.google.android.material.bottomnavigation.BottomNavigationView
+          android:id="@+id/bottomnav"
+          android:layout_width="match_parent"
+          android:layout_height="60dp"
+          android:layout_alignParentBottom="true"
+          app:menu="@menu/button_navigation"
+          app:itemIconTint="@drawable/navigation_selector"
+          app:itemIconSize="25dp"
+          app:labelVisibilityMode="unlabeled">
+      </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnscan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        app:layout_anchor="@id/bottomapp"
+        android:backgroundTint="@color/oren"
+        app:borderWidth="0dp"
+        app:fabCustomSize="60dp"
+        android:src="@drawable/icon_scan_qr" />
+
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</RelativeLayout>
