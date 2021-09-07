@@ -47,6 +47,14 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/us"
+            android:text="qwerty"
+            android:textSize="30dp"
+            android:textColor="@color/putih"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
 </RelativeLayout>

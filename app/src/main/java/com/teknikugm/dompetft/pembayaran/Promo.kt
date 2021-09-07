@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teknikugm.dompetft.R
 import com.teknikugm.dompetft.retrofit.API
+import com.teknikugm.dompetft.retrofit.Data
 import com.teknikugm.dompetft.retrofit.RetrofitClient
+import com.teknikugm.dompetft.retrofit.RetrofitClientDua
 import com.teknikugm.dompetft.utama.MainActivity
 import kotlinx.android.synthetic.main.activity_promo.*
 import kotlinx.android.synthetic.main.activity_promo_adapter.*
@@ -31,17 +33,10 @@ class Promo : AppCompatActivity() {
         var selectedPromo = intent.getStringExtra("kode_promo")
 
 //        val itn = intent.getSerializableExtra("popular") as? DataItem
-        var count = 2
 
-        if(count<1){
-            setOf(R.drawable.icon_pricetag)
-            gambarpromo.setImageResource(R.drawable.icon_pricetag)
-            Toast.makeText(this, "tidak ada promo", Toast.LENGTH_SHORT).show()
-
-        }else{
             ava_promos.setText("Available Promos")
             list_promo(selectedPromo)
-        }
+
 
         panah_promo.setOnClickListener(){
             startActivity(Intent(this, MainActivity::class.java))
@@ -50,45 +45,58 @@ class Promo : AppCompatActivity() {
 
     fun list_promo(selectedPromo: String?) {
 
-        RetrofitClient.instance.create(API::class.java).ambil_promo()
-            .enqueue(object : retrofit2.Callback<ResponsePromo>{
+        RetrofitClientDua.instance.create(API::class.java).ambil_promodua()
+            .enqueue(object : retrofit2.Callback<List<DataItemPromo>>{
 
                 override fun onResponse(
-                    call: Call<ResponsePromo>,
-                    response: Response<ResponsePromo>
+                    call: Call<List<DataItemPromo>>,
+                    response: Response<List<DataItemPromo>>
                 ) {
-                    if (response.isSuccessful){
-                        val dataItem = response.body()?.data
-                        val adapter = PromoAdapter(dataItem, this@Promo){ item->
+                    if (response.isSuccessful) {
+                        val dataItem: List<DataItemPromo?>? = response.body()
+                        if (dataItem?.size!! > 0) {
+                            //ada isi
+                        } else {
+                            //nggal ada
+                            gambarpromo.setImageResource(R.drawable.icon_pricetag)
+                            Toast.makeText(
+                                applicationContext,
+                                "tidak ada promo",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
 
-                            val x = intent.extras // ini untuk ngambil data yang dikasih sama transaksi pesanan, untuk ambil hasil scannya tu
-                            result = x?.getString(key) // nilainya ditarok di sini
-                            val totalbelanja = result?.toInt() // nilainya dimasukin ke variabel
-                            val y = item?.minBelanja.toString().toInt() // ini untuk ngambil minimal belanja di list promo
+                            val adapter = PromoAdapter(dataItem, this@Promo) { item ->
 
+                                val x = intent.extras // ini untuk ngambil data yang dikasih sama transaksi pesanan, untuk ambil hasil scannya tu
+                                result = x?.getString(key) // nilainya ditarok di sini
+                                val totalbelanja = result?.toInt() // nilainya dimasukin ke variabel
+                                val y = item?.min_belanja.toString().toInt() // ini untuk ngambil minimal belanja di list promo
+                                val row = item?.jumlah_promo.toString()
+                                banyakpromo.text = row
 
 
 //                            val z = y.("Rp","").replace(".","")
 
-                                if(totalbelanja != null){
-                                    if(totalbelanja < y){
+                                if (totalbelanja != null) {
+                                    if (totalbelanja < y) {
                                         Toast.makeText(applicationContext, "Total belanja Anda masih kurang dari $y", Toast.LENGTH_SHORT).show()
-                                    }else if(item?.kodePromo == selectedPromo){
+                                    } else if (item?.kode_promo == selectedPromo) {
                                         Toast.makeText(applicationContext, "Promo $selectedPromo sudah Anda pakai", Toast.LENGTH_SHORT).show()
-                                    }else {
+                                    } else {
                                         val ii = Intent()
                                         ii.putExtra("promo", item)
                                         setResult(Activity.RESULT_OK, ii)
                                         finish()
                                     }
                                 }
+                            }
+                            rv.layoutManager = LinearLayoutManager(this@Promo)
+                            rv.adapter = adapter
                         }
-                        rv.layoutManager = LinearLayoutManager(this@Promo)
-                        rv.adapter = adapter
                     }
-                }
 
-                override fun onFailure(call: Call<ResponsePromo>, t: Throwable) {
+                override fun onFailure(call: Call<List<DataItemPromo>>, t: Throwable) {
                     Toast.makeText(applicationContext, "Connection failed", Toast.LENGTH_SHORT).show()
                 }
             })

@@ -35,7 +35,7 @@ class TransaksiPesanan : AppCompatActivity() {
         val totalOrder = intent.getStringExtra("hasil")
         hasil_scan.text = totalOrder
         val e = Currency.toRupiahFormat2(totalOrder.toString().toInt()).replace("$", "").replace(",", ".")
-        total_order.text = e
+        total_order.text = e.replace("Rp","").replace(".","")
 
         btn_promo.setOnClickListener(){
             val a = hasil_scan.text.toString() // ini untuk ambil total order biar bisa dibawa ke list promo, untuk dicek min belanjanya tu
@@ -46,19 +46,19 @@ class TransaksiPesanan : AppCompatActivity() {
         }
 
         btn_pay_pesanan.setOnClickListener(){
-            val a = test_promo.text.toString()
-            val c = Currency.toRupiahFormat2(total_order.text.toString().toInt()).replace(".", "")
-
+            val a = test_promo.text.toString().replace("Rp","")
+            val c = total_order.text.toString().replace("Rp","").replace(".","")
+//            Currency.toRupiahFormat2(total_order.text.toString().toInt()).replace("Rp", "").replace(".","")
             if(total_promo.text.toString().isEmpty()){
 
-                if(saldo_anda.text.toString().toInt() < total_order.text.toString().toInt()){
+                val torder = total_order.text.toString().replace("Rp","").replace(".","")
+                if(saldo_anda.text.toString().toInt() < torder.toInt()){
                     Toast.makeText(this, "Saldo anda tidak cukup", Toast.LENGTH_SHORT).show()
                 } else if (a.isEmpty()){
                     val b = 0
-                    detailTransaksi(c, hasil_scan.text.toString(), b.toString())
-
-                }else {
-                    detailTransaksi(c, hasil_scan.text.toString(), a)
+                    val cc = total_order.text.toString().replace("Rp","").replace(".","")
+                    detailTransaksi(cc, hasil_scan.text.toString(), b.toString())
+                    Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT).show()
                 }
             }else{
                 detailTransaksi(c, hasil_scan.text.toString(),a)
@@ -94,7 +94,7 @@ class TransaksiPesanan : AppCompatActivity() {
                     total_order.setText("0")
                 } else {
                     val hasil = hasilScan - promo
-                    total_order.text =  Currency.toRupiahFormat2(hasil.toInt()).replace("$", "").replace(".", "").replace(",", "")
+                    total_order.text =  Currency.toRupiahFormat2(hasil.toInt()).replace("$", "").replace(".", "").replace(",", "").replace("Rp","")
                 }
 
                 test_kode_promo.text = result

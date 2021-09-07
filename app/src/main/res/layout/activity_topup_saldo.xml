@@ -44,60 +44,60 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp">
 
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/icon_top_up"
-        android:layout_gravity="center_vertical">
-    </ImageView>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center_vertical">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icon_top_up"
+            android:layout_gravity="center_vertical">
+        </ImageView>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="20dp">
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Top up"
+                    android:textSize="20sp"
+                    android:textColor="@color/birudongker"
+                    android:fontFamily="@font/poppins_medium">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="your balance"
+                    android:textColor="@color/hitam"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="20sp">
+
+                </TextView>
+
+            </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Top up"
+                android:text="here!"
+                android:layout_marginStart="20dp"
                 android:textSize="20sp"
-                android:textColor="@color/birudongker"
-                android:fontFamily="@font/poppins_medium">
-
-            </TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="your balance"
-                android:textColor="@color/hitam"
-                android:layout_marginStart="5dp"
                 android:fontFamily="@font/poppins_medium"
-                android:textSize="20sp">
+                android:textColor="@color/hitam">
 
             </TextView>
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="here!"
-            android:layout_marginStart="20dp"
-            android:textSize="20sp"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="@color/hitam">
-
-        </TextView>
-
-    </LinearLayout>
 
     </LinearLayout>
 
@@ -111,30 +111,42 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp">
 
-            <TextView
-                android:id="@+id/txtvoucher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Top up"
-                android:textSize="20sp"
-                android:layout_marginTop="40dp"
-                android:layout_marginStart="40dp"
-                android:textColor="@color/oren"
-                android:fontFamily="@font/poppins_semi">
-            </TextView>
+        <TextView
+            android:id="@+id/txtvoucher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Top up"
+            android:textSize="20sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="40dp"
+            android:textColor="@color/oren"
+            android:fontFamily="@font/poppins_semi">
+        </TextView>
 
-            <TextView
-                android:id="@+id/txtcode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="amount"
-                android:textSize="20sp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="40dp"
-                android:textColor="@color/putih"
-                android:fontFamily="@font/poppins_semi"
-                android:layout_toRightOf="@id/txtvoucher">
-            </TextView>
+        <TextView
+            android:id="@+id/txtcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="amount"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/putih"
+            android:fontFamily="@font/poppins_semi"
+            android:layout_toRightOf="@id/txtvoucher">
+        </TextView>
+        <TextView
+            android:id="@+id/txtid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="iduser"
+            android:textSize="20sp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/putih"
+            android:fontFamily="@font/poppins_semi"
+            android:layout_toRightOf="@id/txtvoucher">
+        </TextView>
 
         <RelativeLayout
             android:id="@+id/background"
@@ -150,9 +162,24 @@
                 android:id="@+id/topup_saldo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="@color/putih"
+                android:hint="Enter your top up amount"
+                android:inputType="number"/>
 
-            </EditText>
+<!--            <me.abhinay.input.CurrencyEditText-->
+<!--                android:id="@+id/topup_saldo"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:backgroundTint="@color/putih"-->
+<!--                android:hint="Enter your top up amount"-->
+<!--                android:inputType="number"></me.abhinay.input.CurrencyEditText>-->
+
         </RelativeLayout>
 
         <RelativeLayout

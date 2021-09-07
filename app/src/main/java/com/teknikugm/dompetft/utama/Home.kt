@@ -1,27 +1,27 @@
 package com.teknikugm.dompetft.utama
 
-import android.Manifest
 import android.content.ContextWrapper
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.requestPermissions
-import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.teknikugm.dompetft.*
 import com.teknikugm.dompetft.pembayaran.Promo
 import com.teknikugm.dompetft.retrofit.*
+import com.teknikugm.dompetft.revisi.api.SessionManager
+import com.teknikugm.dompetft.revisi.model.Profile_m
+import com.teknikugm.dompetft.revisi.topup.TopupSaldo
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.btn_topup_home
 import retrofit2.Call
 import retrofit2.Response
-
 class Home : Fragment() {
+
+    private lateinit var sessionManager: SessionManager
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.activity_home, container, false)
@@ -31,13 +31,12 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         btn_send_home.setOnClickListener(){
             startActivity(Intent(context, Scanner_Transfer::class.java))
         }
 
         btn_topup_home.setOnClickListener(){
-            startActivity(Intent(context, TopUp::class.java))
+            startActivity(Intent(context, TopupSaldo::class.java))
         }
 
         card_qr.setOnClickListener(){
@@ -52,33 +51,78 @@ class Home : Fragment() {
             startActivity(Intent(context, Promo::class.java))
         }
 
-        val b = context?.getSharedPreferences(Constant.PREFS_NAME, ContextWrapper.MODE_PRIVATE)?.getString(Constant.username, "none")
-        nampilinSaldo(b)
+//        val b = context?.getSharedPreferences(Constant.PREFS_NAME, ContextWrapper.MODE_PRIVATE)?.getString(Constant.username, "none")
+//        nampilinSaldo(b)
+//        nampilinSaldo(b)
+        sessionManager = SessionManager(this.context!!)
+        if (sessionManager.fetchAuthToken() == null) {
+            userhome.text = "Guest"
+        }
+        else {
+            val activity: MainActivity = activity as MainActivity
+            val profile = activity.getProfile()
+            userhome.text = profile?.id
+            usernamehome.text =profile?.username
+            txtsaldo_home.text= profile?.saldo
+        }
+
 
         swipe_refresh.setOnRefreshListener {
-            nampilinSaldo(b)
+//            nampilinSaldo(b)
+            sessionManager = SessionManager(this.context!!)
+            if (sessionManager.fetchAuthToken() == null) {
+                userhome.text = "Guest"
+            }
+            else {
+                val activity: MainActivity = activity as MainActivity
+                val profile = activity.getProfile()
+                userhome.text = profile?.id
+                usernamehome.text =profile?.username
+                txtsaldo_home.text= profile?.saldo
+
+            }
+
             swipe_refresh.isRefreshing= false
         }
+
     }
 
-    fun nampilinSaldo(key : String?){
-        lateinit var myAPI: API
-        val retrofit = RetrofitClient.instance
-        myAPI = retrofit.create(API::class.java)
+//    fun nampilinSaldo(key : String?){
+//        lateinit var myAPI: API
+//        val retrofit = RetrofitClient.instance
+//        myAPI = retrofit.create(API::class.java)
+//
+//        myAPI.getsaldo(key).enqueue(object : retrofit2.Callback<ResponseSaldo>{
+//
+//            override fun onFailure(call: Call<ResponseSaldo>, t: Throwable) {
+//                Toast.makeText(context, "Tidak bisa memuat saldo", Toast.LENGTH_SHORT).show()
+//            }
+//
+//            override fun onResponse(call: Call<ResponseSaldo>, response: Response<ResponseSaldo>) {
+//                val a = response.body()?.balance.toString().toInt()
+//                txtsaldo_home.text = Currency.toRupiahFormat2(a).replace("$", "").replace(",", ".")
+//            }
+//        })
+//    }
 
-        myAPI.getsaldo(key).enqueue(object : retrofit2.Callback<ResponseSaldo>{
-
-            override fun onFailure(call: Call<ResponseSaldo>, t: Throwable) {
-                Toast.makeText(context, "Tidak bisa memuat saldo", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onResponse(call: Call<ResponseSaldo>, response: Response<ResponseSaldo>) {
-                val a = response.body()?.balance.toString().toInt()
-                txtsaldo_home.text = Currency.toRupiahFormat2(a).replace("$", "").replace(",", ".")
-            }
-        })
-    }
-
+    //REVISI
+//    fun getProfile(): Profile_m? {
+//        apiClient = ApiClient()
+//        sessionManager = SessionManager(requireContext())
+//        apiClient.getApiService(requireContext()).getProfile()
+//            .enqueue(object : Callback<Profile_m> {
+//                override fun onFailure(call: Call<Profile_m>, t: Throwable) {
+//
+//                }
+//
+//                //@Suppress("UNREACHABLE_CODE")
+//                override fun onResponse(call: Call<Profile_m>, response: Response<Profile_m>) {
+//                    profilResponse = response.body()
+//                    sessionManager.saveUsername(profilResponse?.username)
+//                }
+//            })
+//        return profilResponse
+//    }
 
 
 

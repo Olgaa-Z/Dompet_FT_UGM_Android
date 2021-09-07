@@ -165,7 +165,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semi"
-                android:text="Total Order : Rp"
+                android:text="Total Order :"
                 android:textColor="@color/hitam"
                 android:textSize="16sp">
             </TextView>

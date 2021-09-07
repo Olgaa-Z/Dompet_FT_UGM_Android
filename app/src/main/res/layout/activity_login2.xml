@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".utama.Login"
+    android:background="@drawable/tampilan_login">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log"
+            android:textColor="@color/birumuda"
+            android:textSize="38sp"
+            android:fontFamily="@font/poppins_bold"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/in"
+            android:textColor="@color/oren"
+            android:layout_marginStart="5dp"
+            android:textSize="38sp"
+            android:fontFamily="@font/poppins_bold"
+            android:textStyle="bold">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_marginTop="150dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/uname"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:backgroundTint="@color/birudongker"
+            app:boxCornerRadiusBottomEnd="30dp"
+            app:boxCornerRadiusBottomStart="30dp"
+            app:boxCornerRadiusTopEnd="30dp"
+            app:boxCornerRadiusTopStart="30dp"
+            android:textColorHint="@color/hitam"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernamelogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/username"
+                android:backgroundTint="@color/birudongker"
+                android:textSize="16sp"
+                android:textColor="@color/hitam"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/poppins_medium">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pass"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/uname"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/birudongker"
+            app:boxCornerRadiusBottomEnd="30dp"
+            app:boxCornerRadiusBottomStart="30dp"
+            app:boxCornerRadiusTopEnd="30dp"
+            app:boxCornerRadiusTopStart="30dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/birudongker"
+            android:textColorHint="@color/hitam"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordlogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:backgroundTint="@color/birudongker"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textColor="@color/hitam"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_medium">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/buttonlogin"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/login"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_below="@id/pass"
+            android:background="@drawable/tombol_birudongker"
+            android:textColor="@color/putih"
+            android:layout_marginTop="40dp">
+        </Button>
+
+        <TextView
+            android:id="@+id/txtfirst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_time_user"
+            android:fontFamily="@font/poppins_light"
+            android:layout_marginTop="40dp"
+            android:layout_below="@id/buttonlogin"
+            android:layout_centerInParent="true"
+            android:textColor="@color/hitam"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/textregisterlogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:textColorHint="@color/birudongker"
+            android:text="@string/sign_up"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/txtfirst"
+            android:textColor="@color/birudongker">
+
+        </TextView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

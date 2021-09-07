@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera" />
 
@@ -16,8 +17,17 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="ExtraText">
-        <activity android:name=".utama.TransferSaldoScan">
+        <activity android:name=".revisi.transfer.TransferSaldonew"></activity>
+        <activity android:name=".revisi.topup.TopupSaldo" />
+        <activity android:name=".revisi.RegisterActivity" />
+        <activity android:name=".revisi.Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".utama.TransferSaldoScan" />
         <activity android:name=".utama.Scanner_Transfer" />
         <activity android:name=".pembayaran.TransaksiPesanan" />
         <activity android:name=".pembayaran.Scanner" />
@@ -47,12 +57,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".utama.SplashScreen"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".utama.MainActivity"
             android:screenOrientation="portrait" />

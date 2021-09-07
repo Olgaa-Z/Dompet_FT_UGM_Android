@@ -11,12 +11,28 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.teknikugm.dompetft.R
 import com.teknikugm.dompetft.pembayaran.Scanner
+import com.teknikugm.dompetft.revisi.api.ApiClient
+import com.teknikugm.dompetft.revisi.api.SessionManager
+import com.teknikugm.dompetft.revisi.fragment.ProfileFragment
+import com.teknikugm.dompetft.revisi.model.Profile_m
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var apiClient: ApiClient
+    private lateinit var sessionManager: SessionManager
+    var profilResponse: Profile_m? = Profile_m("","",null,null)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.container, Home())
+                .commit()
 
         if (ContextCompat.checkSelfPermission(this@MainActivity,
                 Manifest.permission.CAMERA) !==
@@ -35,10 +51,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,Scanner::class.java))
         }
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, Home())
-            .commit()
-
         bottomnav.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.home -> {
@@ -50,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.profile -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, Profile())
+                        .replace(R.id.container, ProfileFragment())
                         .commit()
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -59,6 +71,26 @@ class MainActivity : AppCompatActivity() {
             false
         }
 
+    }
+
+    //REVISI
+    fun getProfile(): Profile_m? {
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        apiClient.getApiService(this).getProfile()
+            .enqueue(object : Callback<Profile_m> {
+                override fun onFailure(call: Call<Profile_m>, t: Throwable) {
+
+                }
+
+                //@Suppress("UNREACHABLE_CODE")
+                override fun onResponse(call: Call<Profile_m>, response: Response<Profile_m>) {
+                    profilResponse = response.body()
+                    sessionManager.saveUsername(profilResponse?.username)
+                    sessionManager.saveProfile(profilResponse)
+                }
+            })
+        return profilResponse
     }
 
     override fun onBackPressed() {

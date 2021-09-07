@@ -13,6 +13,7 @@ import com.teknikugm.dompetft.R
 import com.teknikugm.dompetft.pembayaran.Response_Detail
 import com.teknikugm.dompetft.retrofit.*
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_transfer_saldo.*
 import kotlinx.android.synthetic.main.activity_transfer_saldo_scan.*
 import retrofit2.Call
@@ -36,38 +37,50 @@ class TransferSaldo : AppCompatActivity() {
         }
 
         btn_send_transfer.setOnClickListener(){
-            val x = editbalance_transfer.text.toString().replace("Rp","").replace(".","")
 
-            if (saldo_contoh.text.toString().toInt() < x.toInt()){
-                // cek kalo saldo kurang
+            if(editidnumber_transfer.text.isEmpty()){
+                editidnumber_transfer.error = "Masukkan username tujuan"
+                editidnumber_transfer.requestFocus()
+                return@setOnClickListener
+            }else if(editbalance_transfer.text!!.isEmpty()){
+                editbalance_transfer.error="Masukkan jumlah transfer "
+                editbalance_transfer.requestFocus()
+                return@setOnClickListener
+            }else{
+                val x = editbalance_transfer.text.toString().replace("Rp","").replace(".","")
 
-                AlertDialog.Builder(this@TransferSaldo)
-                    .setMessage("Saldo Anda tidak cukup")
-                    .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
-                        clearData()
+                if (saldo_contoh.text.toString().toInt() < x.toInt()){
+                    // cek kalo saldo kurang
+
+                    AlertDialog.Builder(this@TransferSaldo)
+                        .setMessage("Saldo Anda tidak cukup")
+                        .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                            clearData()
+                        }
+                        .show()
+
+                } else if(a == editidnumber_transfer.text.toString()){
+                    // cek kalo transfer ke diri sndiri
+                    AlertDialog.Builder(this@TransferSaldo)
+                        .setMessage("Transaksi tidak dapat dilakukan")
+                        .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                            clearData()
+                            startActivity(Intent(applicationContext, MainActivity::class.java))
+                        }
+                        .show()
+
+                }
+                else {
+                    if (x.toInt() < 5000){
+                        //cek kalo dak memenuhi minimal transaksi
+                        Toast.makeText(this, "Transaksi minimal Rp 5000", Toast.LENGTH_SHORT).show()
+                    } else {
+                        val username = getSharedPreferences(Constant.PREFS_NAME, ContextWrapper.MODE_PRIVATE)?.getString((Constant.username), "none")
+                        transfer(username.toString(), x, editidnumber_transfer.text.toString())
                     }
-                    .show()
-
-            } else if(a == editidnumber_transfer.text.toString()){
-                // cek kalo transfer ke diri sndiri
-                AlertDialog.Builder(this@TransferSaldo)
-                    .setMessage("Transaksi tidak dapat dilakukan")
-                    .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
-                        clearData()
-                        startActivity(Intent(applicationContext, MainActivity::class.java))
-                    }
-                    .show()
-
-            }
-            else {
-                if (x.toInt() < 5000){
-                    //cek kalo dak memenuhi minimal transaksi
-                    Toast.makeText(this, "Transaksi minimal Rp 5000", Toast.LENGTH_SHORT).show()
-                } else {
-                    val username = getSharedPreferences(Constant.PREFS_NAME, ContextWrapper.MODE_PRIVATE)?.getString((Constant.username), "none")
-                    transfer(username.toString(), x, editidnumber_transfer.text.toString())
                 }
             }
+
         }
 
         btn_cancel_transfer.setOnClickListener(){
