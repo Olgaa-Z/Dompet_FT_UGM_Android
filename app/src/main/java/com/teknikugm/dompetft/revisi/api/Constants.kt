@@ -12,10 +12,10 @@ object Constants {
     const val USER_URL = "rest-auth/user/"
     const val CHANGEPASS_URL = "rest-auth/password/change/"
 
+//    8fee9155d25a134d149bb518ccb4739ed9ecca0d
+
     const val username = "username"
 
     val PREFS_NAME = MainActivity::class.java.`package`?.toString()
-
-
 
 }

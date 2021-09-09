@@ -11,16 +11,46 @@ import androidx.fragment.app.Fragment
 import com.teknikugm.dompetft.*
 import com.teknikugm.dompetft.pembayaran.Promo
 import com.teknikugm.dompetft.retrofit.*
+import com.teknikugm.dompetft.revisi.api.ApiClient
 import com.teknikugm.dompetft.revisi.api.SessionManager
+import com.teknikugm.dompetft.revisi.fragment.ARG_PARAM1
+import com.teknikugm.dompetft.revisi.fragment.ARG_PARAM2
+import com.teknikugm.dompetft.revisi.fragment.ProfileFragment
 import com.teknikugm.dompetft.revisi.model.Profile_m
+import com.teknikugm.dompetft.revisi.promo.PromoNew
 import com.teknikugm.dompetft.revisi.topup.TopupSaldo
+import com.teknikugm.dompetft.revisi.transfer.TransferSaldonew
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.btn_topup_home
+import kotlinx.android.synthetic.main.fragment_profile_fragment.*
 import retrofit2.Call
 import retrofit2.Response
-class Home : Fragment() {
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
+/**
+ * A simple [Fragment] subclass.
+ * Use the [ProfileFragmnet.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class Home : Fragment() {
+    // TODO: Rename and change types of parameters
+    private var param1: String? = null
+    private var param2: String? = null
+
+
+    private lateinit var apiClient: ApiClient
     private lateinit var sessionManager: SessionManager
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString(com.teknikugm.dompetft.revisi.fragment.ARG_PARAM1)
+            param2 = it.getString(com.teknikugm.dompetft.revisi.fragment.ARG_PARAM2)
+        }
+    }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,26 +74,27 @@ class Home : Fragment() {
         }
 
         card_transfer.setOnClickListener(){
-            startActivity(Intent(context, TransferSaldo::class.java))
+            startActivity(Intent(context, TransferSaldonew::class.java))
         }
 
         card_promo.setOnClickListener(){
-            startActivity(Intent(context, Promo::class.java))
+            startActivity(Intent(context, PromoNew::class.java))
         }
 
-//        val b = context?.getSharedPreferences(Constant.PREFS_NAME, ContextWrapper.MODE_PRIVATE)?.getString(Constant.username, "none")
-//        nampilinSaldo(b)
-//        nampilinSaldo(b)
+        apiClient = ApiClient()
         sessionManager = SessionManager(this.context!!)
+
         if (sessionManager.fetchAuthToken() == null) {
-            userhome.text = "Guest"
+
         }
         else {
             val activity: MainActivity = activity as MainActivity
             val profile = activity.getProfile()
-            userhome.text = profile?.id
-            usernamehome.text =profile?.username
+
+//            userhome.text = profile?.id
+//            usernamehome.text =profile?.username
             txtsaldo_home.text= profile?.saldo
+
         }
 
 
@@ -76,8 +107,8 @@ class Home : Fragment() {
             else {
                 val activity: MainActivity = activity as MainActivity
                 val profile = activity.getProfile()
-                userhome.text = profile?.id
-                usernamehome.text =profile?.username
+//                userhome.text = profile?.id
+//                usernamehome.text =profile?.username
                 txtsaldo_home.text= profile?.saldo
 
             }
@@ -123,6 +154,26 @@ class Home : Fragment() {
 //            })
 //        return profilResponse
 //    }
+
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment ProfileFragmnet.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            ProfileFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
+    }
 
 
 

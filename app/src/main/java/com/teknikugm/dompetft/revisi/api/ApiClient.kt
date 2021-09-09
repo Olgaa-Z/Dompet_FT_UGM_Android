@@ -28,8 +28,10 @@ class ApiClient {
 
     private fun okhttpClient(context: Context): OkHttpClient {
         val logging = HttpLoggingInterceptor()
+                .setLevel(HttpLoggingInterceptor.Level.HEADERS)
                 .setLevel(HttpLoggingInterceptor.Level.BASIC)
                 .setLevel(HttpLoggingInterceptor.Level.BODY)
+
         return OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .addInterceptor(AuthInterceptor(context))

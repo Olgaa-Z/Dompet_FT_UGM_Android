@@ -1,11 +1,14 @@
 package com.teknikugm.dompetft.retrofit
 
-import com.teknikugm.dompetft.pembayaran.DataItemPromo
 import com.teknikugm.dompetft.pembayaran.ResponsePromo
 import com.teknikugm.dompetft.pembayaran.Response_Detail
 import com.teknikugm.dompetft.revisi.api.Constants
+import com.teknikugm.dompetft.revisi.api.FilterUser
 import com.teknikugm.dompetft.revisi.model.*
+import com.teknikugm.dompetft.revisi.promo.DataItemPromoNew
 import com.teknikugm.dompetft.revisi.topup.ResponseTopup
+import com.teknikugm.dompetft.revisi.transfer.ResponseTransaksiItem
+import com.teknikugm.dompetft.revisi.transfer.TransferItem
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -18,7 +21,8 @@ interface API {
     //@FormUrlEncoded
     fun addUser(@Body userInfo: RegisterRequest): Call<RegisterResponse>
 
-    //@Headers("Content-Type: application/json")
+    //@Headers("Content-Typ
+    // e: application/json")
     @POST(Constants.LOGIN_URL)
     //@FormUrlEncoded
     fun login(@Body request: LoginRequest): Call<LoginResponse>
@@ -52,8 +56,8 @@ interface API {
 
     ): Call<Response_Topup>
 
-    @GET("api/promo/?format=json")
-    fun ambil_promodua(): Call<List<DataItemPromo>>
+    @GET("aktif/?format=json")
+    fun promonew(): Call<List<DataItemPromoNew>>
 
     @GET("index.php/Transaksi_promo/api_list_promo")
     fun ambil_promo(): Call<ResponsePromo>
@@ -100,16 +104,34 @@ interface API {
 
     ): Call<ResponseTopup>
 
-    //transfer saldo
+    //kirim tipe transaksi
     @FormUrlEncoded
-    @POST("index.php/Transaksi_saldo/transaksi")
-    fun transfersaldo(
+    @POST("transaksi/")
+    fun transaksinew(
+            @Field("tipe_transaksi") tipetrans: Int,
+//            @Field("user") user: String,
+//        @Part body: RequestBody
+    ): Call<ResponseTransaksiItem>
 
-        @Field("username") username: String?,
-        @Field("jumlah_payment") nameReg: Int?,
-        @Field("username_to") passwordReg: String?
 
-    ): Call<Response_Detail>
+    //transaksi transfer == 2
+    @FormUrlEncoded
+    @POST("transaksi/{id}/transfer")
+    fun transfer(
+            @Field("jumlah_transfer") jumlahtransfer: Int,
+            @Field("user_tujuan") usertujuan: Int?,
+            @Path("id") id: Int,
+    ): Call<TransferItem>
+
+    //getdata user
+
+    @GET("filtesuser/?format=json")
+    fun filteruser(): Call<List<FilterUser>>
+
+
+
+
+
 
 
 }

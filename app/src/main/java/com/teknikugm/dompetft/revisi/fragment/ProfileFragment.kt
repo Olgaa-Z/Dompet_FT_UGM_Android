@@ -15,8 +15,8 @@ import kotlinx.android.synthetic.main.fragment_profile_fragment.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+const val ARG_PARAM1 = "param1"
+const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -66,6 +66,7 @@ class ProfileFragment : Fragment() {
             val activity: MainActivity = activity as MainActivity
             val profile = activity.getProfile()
 
+            nameprofil.text= profile?.saldo
             usernameprofil.text = profile?.username
             iduserprofil.text = profile?.id.toString()
             emailprofil.text = profile?.email.toString()
