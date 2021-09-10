@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="ExtraText">
-        <activity android:name=".revisi.promo.PromoNewAdapter"></activity>
+        <activity android:name=".revisi.bayar.PayKantin"></activity>
         <activity android:name=".revisi.promo.PromoNew" />
         <activity android:name=".revisi.transfer.TransferSaldonew" />
         <activity android:name=".revisi.topup.TopupSaldo" />

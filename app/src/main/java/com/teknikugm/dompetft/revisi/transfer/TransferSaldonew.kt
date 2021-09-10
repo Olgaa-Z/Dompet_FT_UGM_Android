@@ -26,7 +26,7 @@ class TransferSaldonew : AppCompatActivity() {
                 it.username == username.toString()
             }
             val id = filter[0].id
-            val tipetrans = 1
+            val tipetrans = 2
             transaksiNew(tipetrans, id)
         }
     }

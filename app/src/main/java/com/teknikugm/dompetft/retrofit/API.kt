@@ -7,6 +7,7 @@ import com.teknikugm.dompetft.revisi.api.FilterUser
 import com.teknikugm.dompetft.revisi.model.*
 import com.teknikugm.dompetft.revisi.promo.DataItemPromoNew
 import com.teknikugm.dompetft.revisi.topup.ResponseTopup
+import com.teknikugm.dompetft.revisi.transfer.BayarItem
 import com.teknikugm.dompetft.revisi.transfer.ResponseTransaksiItem
 import com.teknikugm.dompetft.revisi.transfer.TransferItem
 import retrofit2.Call
@@ -127,6 +128,25 @@ interface API {
 
     @GET("filtesuser/?format=json")
     fun filteruser(): Call<List<FilterUser>>
+
+//    @FormUrlEncoded
+//    @POST("transaksi/56/bayar")
+//    fun bayar(
+//        @Field("total_asli") totalasli: Int,
+//        @Field("total_bayar") totalbayar: Int?,
+//        @Field("id_penjual") idpenjual: Int?,
+//        @Field("diskon") diskon: Int?
+//    ): Call<BayarItem>
+
+    @FormUrlEncoded
+    @POST("transaksi/{id}/bayar")
+    fun bayar(
+        @Field("total_asli") totalasli: Int,
+        @Field("total_bayar") totalbayar: Int?,
+        @Field("id_penjual") idpenjual: Int?,
+        @Field("diskon") diskon: Int?,
+        @Path("id") id: Int,
+    ): Call<BayarItem>
 
 
 

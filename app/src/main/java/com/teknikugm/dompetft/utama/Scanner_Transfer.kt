@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.budiyev.android.codescanner.*
 import com.teknikugm.dompetft.R
+import com.teknikugm.dompetft.revisi.bayar.PayKantin
 import kotlinx.android.synthetic.main.activity_scanner__transfer.*
 
 class Scanner_Transfer : AppCompatActivity() {
@@ -46,7 +47,7 @@ class Scanner_Transfer : AppCompatActivity() {
                 try {
                     val a = it.text
                     if (a!= null && a!==""){
-                        val i = Intent(this, TransferSaldoScan::class.java)
+                        val i = Intent(this, PayKantin::class.java)
                         i.putExtra("SCAN", a)
                         startActivity(i)
                     }

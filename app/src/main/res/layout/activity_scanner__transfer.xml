@@ -13,7 +13,6 @@
         android:orientation="horizontal"
         android:layout_marginTop="35dp"
         android:layout_marginLeft="30dp">
-
         <ImageView
             android:id="@+id/panah_scanner"
             android:layout_width="35dp"
@@ -25,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Transfer Balance"
+            android:text="Bayar Kantin"
             android:textColor="@color/putih"
             android:fontFamily="@font/poppins_semi"
             android:textSize="20sp"

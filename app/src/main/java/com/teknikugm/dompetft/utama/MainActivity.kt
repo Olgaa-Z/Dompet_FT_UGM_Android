@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnscan.setOnClickListener(){
-            startActivity(Intent(this,Scanner::class.java))
+            startActivity(Intent(this,Scanner_Transfer::class.java))
         }
 
         bottomnav.setOnNavigationItemSelectedListener {
