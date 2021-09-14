@@ -49,30 +49,6 @@
                 android:textColor="@color/hitam"
                 android:textStyle="bold">
             </TextView>
-            <TextView
-                android:id="@+id/userhome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="userr"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_marginTop="20dp"
-                android:layout_below="@id/txtrp"
-                android:textSize="15sp"
-                android:textColor="@color/hitam"
-                android:textStyle="bold">
-            </TextView>
-            <TextView
-                android:id="@+id/usernamehome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="userr"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_marginTop="40dp"
-                android:layout_below="@id/txtrp"
-                android:textSize="15sp"
-                android:textColor="@color/hitam"
-                android:textStyle="bold">
-            </TextView>
 
             <RelativeLayout
                 android:id="@+id/btn_send_home"

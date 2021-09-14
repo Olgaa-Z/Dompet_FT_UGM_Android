@@ -3,6 +3,7 @@ package com.teknikugm.dompetft.revisi
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Toast
 import com.teknikugm.dompetft.R
 import com.teknikugm.dompetft.revisi.api.ApiClient
@@ -103,5 +104,18 @@ class RegisterActivity : AppCompatActivity() {
             })
 
 
+    }
+
+    private var doubleBackToExitPressedOnce = false
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Tekan tombol kembali lagi untuk keluar", Toast.LENGTH_SHORT).show()
+
+        Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
 }

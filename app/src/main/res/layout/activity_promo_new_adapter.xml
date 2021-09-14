@@ -117,6 +117,15 @@
                     </TextView>
 
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/idpromo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="0"
+                    android:textColor="@color/hitam"
+                    android:textSize="14sp"/>
 
             </LinearLayout>
 

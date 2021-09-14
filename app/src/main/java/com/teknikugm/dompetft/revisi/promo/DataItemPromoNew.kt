@@ -1,7 +1,7 @@
 package com.teknikugm.dompetft.revisi.promo
 
 import com.google.gson.annotations.SerializedName
-
+import java.io.Serializable
 
 
 data class DataItemPromoNew(
@@ -31,5 +31,5 @@ data class DataItemPromoNew(
 	val detailPromo: String? = null,
 
 	@field:SerializedName("jumlah_promo")
-	val jumlahPromo: Any? = null
-)
+	val jumlahPromo: Int? = null
+): Serializable

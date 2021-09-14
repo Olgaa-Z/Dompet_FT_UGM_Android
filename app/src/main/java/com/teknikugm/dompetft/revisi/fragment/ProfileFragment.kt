@@ -1,12 +1,16 @@
 package com.teknikugm.dompetft.revisi.fragment
 
+import android.app.AlertDialog
+import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.edit
 import com.teknikugm.dompetft.R
+import com.teknikugm.dompetft.retrofit.Constant
 import com.teknikugm.dompetft.revisi.Login
 import com.teknikugm.dompetft.revisi.api.ApiClient
 import com.teknikugm.dompetft.revisi.api.SessionManager
@@ -70,13 +74,20 @@ class ProfileFragment : Fragment() {
             usernameprofil.text = profile?.username
             iduserprofil.text = profile?.id.toString()
             emailprofil.text = profile?.email.toString()
-            usern.text = profile?.id.toString()
 
             buttonlogoutprofil.visibility = View.VISIBLE
         }
 
         buttonlogoutprofil.setOnClickListener(){
-            signout()
+            AlertDialog.Builder(context )
+                    .setMessage("Yakin untuk logout?")
+                    .setPositiveButton("Ya") { dialog, whichButton ->
+                        signout()
+                    }
+                    .setNegativeButton("Batal") { dialog, whichButton ->
+                    }
+                    .show()
+
         }
 
 //        usern.text = context?.getSharedPreferences(PREFS_NAME.toString(),ContextWrapper.MODE_PRIVATE)?.getString("id","none")

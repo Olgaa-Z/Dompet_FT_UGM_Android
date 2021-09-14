@@ -12,22 +12,43 @@ import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.teknikugm.dompetft.R
 import com.teknikugm.dompetft.retrofit.Constant
+import com.teknikugm.dompetft.revisi.api.ApiClient
+import com.teknikugm.dompetft.revisi.api.SessionManager
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_my_q_r.*
+import kotlinx.android.synthetic.main.activity_topup_saldo.*
 
 class MyQR : AppCompatActivity() {
+
+
+    private lateinit var apiClient: ApiClient
+    private lateinit var sessionManager: SessionManager
+
+    private var userqr: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_q_r)
 
-        val username = this.getSharedPreferences(Constant.PREFS_NAME, ContextWrapper.MODE_PRIVATE)?.getString(Constant.username, "None").toString()
-        if (username.isNotBlank()){
-            val bitmap = generateQRCode(username)
+        sessionManager = SessionManager(this)
+        if (sessionManager.fetchAuthToken() == null) {
+            txtid.text = "Guest"
+        }
+        else {
+            val detailProfile = sessionManager.getProfile()
+            userqr = detailProfile.username
+        }
+//        val username = this.getSharedPreferences(Constant.PREFS_NAME, ContextWrapper.MODE_PRIVATE)?.getString(Constant.username, "None").toString()
+        if (userqr !== null){
+            val bitmap = generateQRCode(userqr.toString())
             img_myqr.setImageBitmap(bitmap)
         }
 
         panah_myqr.setOnClickListener(){
             startActivity(Intent(this, MainActivity::class.java))
         }
+
+
     }
 
     private  val TAG = "MainActivity"

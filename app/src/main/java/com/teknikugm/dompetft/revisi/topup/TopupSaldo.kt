@@ -33,10 +33,7 @@ class TopupSaldo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topup_saldo)
 
-//        swipe_refreshtopup.setOnRefreshListener{
 
-//
-//        }
         sessionManager = SessionManager(this)
             if (sessionManager.fetchAuthToken() == null) {
                 txtid.text = "Guest"
@@ -64,6 +61,13 @@ class TopupSaldo : AppCompatActivity() {
 
                         if(response.isSuccessful){
                             if (response.isSuccessful){
+                                AlertDialog.Builder(this@TopupSaldo)
+                                        .setMessage("Topup Saldo berhasil...")
+                                        .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+//                                                        clearData()
+                                            startActivity(Intent(applicationContext, MainActivity::class.java))
+                                        }
+                                        .show()
                                 Toast.makeText(this@TopupSaldo, "topup berhasil", Toast.LENGTH_SHORT).show()
 
                             }else{

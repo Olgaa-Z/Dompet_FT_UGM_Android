@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.teknikugm.dompetft.*
 import com.teknikugm.dompetft.pembayaran.Promo
+import com.teknikugm.dompetft.pembayaran.Scanner
 import com.teknikugm.dompetft.retrofit.*
 import com.teknikugm.dompetft.revisi.api.ApiClient
 import com.teknikugm.dompetft.revisi.api.SessionManager
@@ -40,6 +41,8 @@ class Home : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var saldo: String? = null
+
 
     private lateinit var apiClient: ApiClient
     private lateinit var sessionManager: SessionManager
@@ -50,6 +53,7 @@ class Home : Fragment() {
             param1 = it.getString(com.teknikugm.dompetft.revisi.fragment.ARG_PARAM1)
             param2 = it.getString(com.teknikugm.dompetft.revisi.fragment.ARG_PARAM2)
         }
+
     }
 
 
@@ -60,9 +64,27 @@ class Home : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        txtsaldo_home.text =saldo
+
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this.context!!)
+
+        if (sessionManager.fetchAuthToken() == null) {
+
+        }
+        else {
+            val activity: MainActivity = activity as MainActivity
+            val profile = activity.getProfile()
+            saldo= profile?.saldo
+
+        }
+
+
+
+
 
         btn_send_home.setOnClickListener(){
-            startActivity(Intent(context, Scanner_Transfer::class.java))
+            startActivity(Intent(context, Scanner::class.java))
         }
 
         btn_topup_home.setOnClickListener(){
@@ -81,28 +103,14 @@ class Home : Fragment() {
             startActivity(Intent(context, PromoNew::class.java))
         }
 
-        apiClient = ApiClient()
-        sessionManager = SessionManager(this.context!!)
 
-        if (sessionManager.fetchAuthToken() == null) {
-
-        }
-        else {
-            val activity: MainActivity = activity as MainActivity
-            val profile = activity.getProfile()
-
-//            userhome.text = profile?.id
-//            usernamehome.text =profile?.username
-            txtsaldo_home.text= profile?.saldo
-
-        }
 
 
         swipe_refresh.setOnRefreshListener {
 //            nampilinSaldo(b)
             sessionManager = SessionManager(this.context!!)
             if (sessionManager.fetchAuthToken() == null) {
-                userhome.text = "Guest"
+                txtsaldo_home.text = "0"
             }
             else {
                 val activity: MainActivity = activity as MainActivity

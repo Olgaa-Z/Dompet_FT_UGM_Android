@@ -74,7 +74,7 @@ class Login : AppCompatActivity() {
 
                         if (token != null) {
                             sessionManager.saveAuthToken(token)
-                            Toast.makeText(this@Login,"berhasil login",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@Login,"Welcome,",Toast.LENGTH_SHORT).show()
                             startActivity(intent)
                             finish()
 
@@ -111,7 +111,7 @@ class Login : AppCompatActivity() {
         }
 
         this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, "Tekan KEMBALI lagi untuk keluar", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Tekan tombol kembali lagi untuk keluar", Toast.LENGTH_SHORT).show()
 
         Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }

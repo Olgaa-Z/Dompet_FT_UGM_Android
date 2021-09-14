@@ -11,14 +11,16 @@ import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.teknikugm.dompetft.R
+import com.teknikugm.dompetft.revisi.transfer.TransfeSaldoScan
 import com.teknikugm.dompetft.utama.MainActivity
+import com.teknikugm.dompetft.utama.TransferSaldoScan
 import kotlinx.android.synthetic.main.activity_scanner.*
 import java.lang.Exception
 
 class Scanner : AppCompatActivity() {
 
     private lateinit var codeScanner : CodeScanner
-    private val key = "hasil"
+    private val key = "SCANUSER"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +56,7 @@ class Scanner : AppCompatActivity() {
                  try {
                      val a = it.text
                      if (a!= null && a!==""){
-                         val i = Intent(this,TransaksiPesanan::class.java)
+                         val i = Intent(this,TransfeSaldoScan::class.java)
                          i.putExtra(key,a)
                          startActivity(i)
                      }

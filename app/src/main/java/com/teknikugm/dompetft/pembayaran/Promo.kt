@@ -42,7 +42,7 @@ class Promo : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
     }
-//
+
 //    fun list_promo(selectedPromo: String?) {
 //
 //        RetrofitClientDua.instance.create(API::class.java).ambil_promodua()

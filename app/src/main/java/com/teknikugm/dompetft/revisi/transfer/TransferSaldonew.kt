@@ -1,11 +1,14 @@
 package com.teknikugm.dompetft.revisi.transfer
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.teknikugm.dompetft.R
 import com.teknikugm.dompetft.revisi.api.ApiClient
 import com.teknikugm.dompetft.revisi.api.FilterUser
+import com.teknikugm.dompetft.utama.MainActivity
 import kotlinx.android.synthetic.main.activity_transfer_saldo.*
 import kotlinx.android.synthetic.main.activity_transfer_saldo.btn_send_transfer
 import kotlinx.android.synthetic.main.activity_transfer_saldonew.*
@@ -43,6 +46,13 @@ class TransferSaldonew : AppCompatActivity() {
                                     .enqueue(object : retrofit2.Callback<TransferItem> {
                                         override fun onResponse(call: Call<TransferItem>, response: Response<TransferItem>) {
                                             Toast.makeText(applicationContext, "Transaction oke", Toast.LENGTH_SHORT).show()
+                                            AlertDialog.Builder(this@TransferSaldonew)
+                                                    .setMessage("Transfer saldo  Rp$a berhasil")
+                                                    .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+//                                                        clearData()
+                                                        startActivity(Intent(applicationContext, MainActivity::class.java))
+                                                    }
+                                                    .show()
                                         }
 
                                         override fun onFailure(call: Call<TransferItem>, t: Throwable) {
@@ -80,6 +90,10 @@ class TransferSaldonew : AppCompatActivity() {
                     }
 
                 })
+    }
+
+    private fun clearData(){
+
     }
 
 //    fun transferSaldo(){

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.teknikugm.dompetft.R
 import kotlinx.android.synthetic.main.activity_promo_adapter.view.*
@@ -27,7 +28,10 @@ class PromoNewAdapter (private var data : List<DataItemPromoNew?>?, private var 
         holder.kodepromo.text = dataItem?.kodePromo
         holder.minbelanja.text = dataItem?.minBelanja
         holder.persentasepromo.text = dataItem?.persentasePromo.toString()
-        holder.itemView.setOnClickListener() { onclick(dataItem) }
+        holder.idpro.text = dataItem?.id.toString()
+        holder.itemView.setOnClickListener {
+           onclick(dataItem)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -39,6 +43,7 @@ class PromoNewAdapter (private var data : List<DataItemPromoNew?>?, private var 
         val kodepromo = item.kodepromonew
         val minbelanja = item.minbelanjanew
         val persentasepromo = item.persentasepromonew
+        val idpro = item.idpromo
     }
 
 
