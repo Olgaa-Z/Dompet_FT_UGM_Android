@@ -41,7 +41,6 @@ class Home : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private var saldo: String? = null
 
 
     private lateinit var apiClient: ApiClient
@@ -53,38 +52,25 @@ class Home : Fragment() {
             param1 = it.getString(com.teknikugm.dompetft.revisi.fragment.ARG_PARAM1)
             param2 = it.getString(com.teknikugm.dompetft.revisi.fragment.ARG_PARAM2)
         }
-
     }
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.activity_home, container, false)
-        return view
+        return inflater.inflate(R.layout.activity_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        txtsaldo_home.text =saldo
 
         apiClient = ApiClient()
         sessionManager = SessionManager(this.context!!)
 
         if (sessionManager.fetchAuthToken() == null) {
-
+            txtsaldo_home.text = "0"
         }
         else {
             val activity: MainActivity = activity as MainActivity
             val profile = activity.getProfile()
-            saldo= profile?.saldo
-
-        }
-
-
-
-
-
-        btn_send_home.setOnClickListener(){
-            startActivity(Intent(context, Scanner::class.java))
+            txtsaldo_home.text = profile?.saldo
         }
 
         btn_topup_home.setOnClickListener(){
@@ -96,18 +82,14 @@ class Home : Fragment() {
         }
 
         card_transfer.setOnClickListener(){
-            startActivity(Intent(context, TransferSaldonew::class.java))
+            startActivity(Intent(context, Scanner::class.java))
         }
 
         card_promo.setOnClickListener(){
             startActivity(Intent(context, PromoNew::class.java))
         }
 
-
-
-
         swipe_refresh.setOnRefreshListener {
-//            nampilinSaldo(b)
             sessionManager = SessionManager(this.context!!)
             if (sessionManager.fetchAuthToken() == null) {
                 txtsaldo_home.text = "0"
@@ -115,53 +97,11 @@ class Home : Fragment() {
             else {
                 val activity: MainActivity = activity as MainActivity
                 val profile = activity.getProfile()
-//                userhome.text = profile?.id
-//                usernamehome.text =profile?.username
                 txtsaldo_home.text= profile?.saldo
-
             }
-
             swipe_refresh.isRefreshing= false
         }
-
     }
-
-//    fun nampilinSaldo(key : String?){
-//        lateinit var myAPI: API
-//        val retrofit = RetrofitClient.instance
-//        myAPI = retrofit.create(API::class.java)
-//
-//        myAPI.getsaldo(key).enqueue(object : retrofit2.Callback<ResponseSaldo>{
-//
-//            override fun onFailure(call: Call<ResponseSaldo>, t: Throwable) {
-//                Toast.makeText(context, "Tidak bisa memuat saldo", Toast.LENGTH_SHORT).show()
-//            }
-//
-//            override fun onResponse(call: Call<ResponseSaldo>, response: Response<ResponseSaldo>) {
-//                val a = response.body()?.balance.toString().toInt()
-//                txtsaldo_home.text = Currency.toRupiahFormat2(a).replace("$", "").replace(",", ".")
-//            }
-//        })
-//    }
-
-    //REVISI
-//    fun getProfile(): Profile_m? {
-//        apiClient = ApiClient()
-//        sessionManager = SessionManager(requireContext())
-//        apiClient.getApiService(requireContext()).getProfile()
-//            .enqueue(object : Callback<Profile_m> {
-//                override fun onFailure(call: Call<Profile_m>, t: Throwable) {
-//
-//                }
-//
-//                //@Suppress("UNREACHABLE_CODE")
-//                override fun onResponse(call: Call<Profile_m>, response: Response<Profile_m>) {
-//                    profilResponse = response.body()
-//                    sessionManager.saveUsername(profilResponse?.username)
-//                }
-//            })
-//        return profilResponse
-//    }
 
     companion object {
         /**

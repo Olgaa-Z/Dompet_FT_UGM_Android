@@ -5,6 +5,8 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -22,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_pay_kantin.*
 import kotlinx.android.synthetic.main.activity_topup_saldo.*
 import kotlinx.android.synthetic.main.activity_transaksi_pesanan.*
 import kotlinx.android.synthetic.main.fragment_profile_fragment.*
+import kotlinx.android.synthetic.main.listmenu.*
 import retrofit2.Call
 import retrofit2.Response
 
@@ -34,8 +37,6 @@ class PayKantin : AppCompatActivity() {
     private var totalBayar : Int?= null
     private var saldo : String?= null
     private var totaltext : String?= null
-
-
     private val key = "hasil"
 
     private lateinit var apiClient: ApiClient
@@ -60,12 +61,18 @@ class PayKantin : AppCompatActivity() {
 
         val gson = Gson()
         val resBayar = gson.fromJson(result, ResponseBayar::class.java)
-        val resMenu = gson.fromJson(result, DaftarMenuItem::class.java)
-//        isimenu.text =  resMenu.toString()
         isipesanan.text=result
-//        isipesanan.text=resBayar.jumlahPesanan.toString()
 
-//        val num :List<String> = listOf(DaftarMenuItem::class.java)
+//        LIST DAFTAR MENU
+        var resMenu = resBayar.daftarMenu
+        var array = mutableListOf<String?>()
+        resMenu?.forEach {
+            array.add(it?.daftarMenu)
+        }
+        val adapter = ArrayAdapter(this,
+            R.layout.listmenu, array)
+        val listView:ListView = findViewById(R.id.listmenu)
+        listView.setAdapter(adapter)
 
         totalorder.text= resBayar.jumlahPesanan.toString()
         totaltext = resBayar.jumlahPesanan.toString()
@@ -78,12 +85,12 @@ class PayKantin : AppCompatActivity() {
         btnpaycanteen.setOnClickListener() {
 
             if (saldo!!.toInt() < resBayar.jumlahPesanan!!.toInt() ){
-                Toast.makeText(this, "Saldo anda tidak cukup !", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Your balance is not enough !", Toast.LENGTH_SHORT).show()
                 AlertDialog.Builder(this@PayKantin)
 
-                        .setTitle("Saldo Anda tidak cukup... ")
-                        .setMessage("Isi Saldo anda sekarang")
-                        .setPositiveButton("Isi Saldo") { dialog, whichButton ->
+                        .setTitle("Your balance is not enough... ")
+                        .setMessage("Fill your balance now")
+                        .setPositiveButton("TOP UP") { dialog, whichButton ->
                             startActivity(Intent(this@PayKantin, TopupSaldo::class.java))
                         }
                         .setNegativeButton("CLOSE") { dialog, whichButton ->
@@ -145,8 +152,8 @@ class PayKantin : AppCompatActivity() {
                             val saldoterkini = saldo?.toInt()!! - totalBayar!!
                             AlertDialog.Builder(this@PayKantin)
 
-                                    .setTitle("Transaksi Pembayaran senilai $totalBayar berhasil ")
-                                    .setMessage("Saldo Anda sekarang : $saldoterkini")
+                                    .setTitle("Payment transaction worth $totalBayar successful")
+                                    .setMessage("Your balance now : $saldoterkini")
                                     .setPositiveButton("OK") { dialog, whichButton ->
                                         startActivity(Intent(this@PayKantin, MainActivity::class.java))
                                     }
@@ -161,7 +168,7 @@ class PayKantin : AppCompatActivity() {
                                                 call: Call<BayarItem>,
                                                 response: Response<BayarItem>
                                         ) {
-                                            ApiClient().getApiService(this@PayKantin).
+                                            ApiClient().getApiService(this@PayKantin)
                                             Toast.makeText(applicationContext, response.message(), Toast.LENGTH_SHORT).show()
                                         }
 

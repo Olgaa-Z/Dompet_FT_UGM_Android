@@ -58,7 +58,7 @@ class TransfeSaldoScan : AppCompatActivity() {
                             .enqueue(object : retrofit2.Callback<TransferItem> {
                                 override fun onResponse(call: Call<TransferItem>, response: Response<TransferItem>) {
                                     AlertDialog.Builder(this@TransfeSaldoScan)
-                                            .setMessage("Transfer saldo sebesar Rp$a berhasil")
+                                            .setMessage("The balance transfer of Rp. $a was successful")
                                             .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
 //                                                        clearData()
                                                 startActivity(Intent(applicationContext, MainActivity::class.java))

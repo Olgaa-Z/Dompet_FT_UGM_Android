@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".utama.MainActivity"
     android:background="@drawable/tampilan_home">
+
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
@@ -20,15 +20,17 @@
 
             <TextView
                 android:id="@+id/txtrp"
+                android:text="Rp "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textColor="@color/hitam"
                 android:textStyle="bold">
             </TextView>
 
             <TextView
+                android:text="30"
                 android:id="@+id/txtsaldo_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,11 +53,11 @@
             </TextView>
 
             <RelativeLayout
-                android:id="@+id/btn_send_home"
+                android:id="@+id/btn_topup_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_pay_home"
-                android:layout_toLeftOf="@id/btn_topup_home"
+                android:layout_alignParentRight="true"
                 android:orientation="horizontal"
                 android:layout_marginRight="2dp">
 
@@ -63,36 +65,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Send"
+                    android:text="Top Up"
                     android:fontFamily="@font/poppins_medium"
                     android:textColor="@color/putih"
                     android:textStyle="bold"
                     android:textSize="15sp">
                 </TextView>
-
             </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/btn_topup_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_topup_home"
-                android:layout_alignParentRight="true"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Top Up"
-                    android:fontFamily="@font/poppins_medium"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/putih"
-                    android:layout_centerInParent="true">
-                </TextView>
-
-            </RelativeLayout>
-
         </RelativeLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

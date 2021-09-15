@@ -12,6 +12,7 @@ import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.teknikugm.dompetft.R
 import com.teknikugm.dompetft.revisi.transfer.TransfeSaldoScan
+import com.teknikugm.dompetft.revisi.transfer.TransferSaldonew
 import com.teknikugm.dompetft.utama.MainActivity
 import com.teknikugm.dompetft.utama.TransferSaldoScan
 import kotlinx.android.synthetic.main.activity_scanner.*
@@ -27,6 +28,10 @@ class Scanner : AppCompatActivity() {
         setContentView(R.layout.activity_scanner)
 
         scanner()
+
+        transferusername.setOnClickListener(){
+            startActivity(Intent(this, TransferSaldonew::class.java))
+        }
 
         panah_scanner_transaksi.setOnClickListener(){
             startActivity(Intent(this, MainActivity::class.java))

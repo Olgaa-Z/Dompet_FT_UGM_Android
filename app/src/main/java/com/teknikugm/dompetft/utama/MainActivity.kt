@@ -31,12 +31,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         supportFragmentManager.beginTransaction()
-                .replace(R.id.container, Home())
-                .commit()
+            .replace(R.id.container, Home())
+            .commit()
 
         if (ContextCompat.checkSelfPermission(this@MainActivity,
-                Manifest.permission.CAMERA) !==
-            PackageManager.PERMISSION_GRANTED) {
+                Manifest.permission.CAMERA) !== PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this@MainActivity,
                     Manifest.permission.CAMERA)) {
                 ActivityCompat.requestPermissions(this@MainActivity,
@@ -59,18 +58,15 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                     return@setOnNavigationItemSelectedListener true
                 }
-
                 R.id.profile -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.container, ProfileFragment())
                         .commit()
                     return@setOnNavigationItemSelectedListener true
                 }
-
             }
             false
         }
-
     }
 
     //REVISI
@@ -80,9 +76,7 @@ class MainActivity : AppCompatActivity() {
         apiClient.getApiService(this).getProfile()
             .enqueue(object : Callback<Profile_m> {
                 override fun onFailure(call: Call<Profile_m>, t: Throwable) {
-
                 }
-
                 //@Suppress("UNREACHABLE_CODE")
                 override fun onResponse(call: Call<Profile_m>, response: Response<Profile_m>) {
                     profilResponse = response.body()
@@ -95,12 +89,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         AlertDialog.Builder(this)
-            .setMessage("Tutup Aplikasi DompetFT?")
-            .setPositiveButton("Ya") { dialog, whichButton ->
+            .setMessage("Close this app?")
+            .setPositiveButton("Yes") { dialog, whichButton ->
                 finishAffinity()
             }
-            .setNegativeButton("Batal") { dialog, whichButton ->
-
+            .setNegativeButton("Cancel") { dialog, whichButton ->
             }
             .show()
     }

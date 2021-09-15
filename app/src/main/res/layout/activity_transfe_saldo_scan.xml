@@ -89,7 +89,7 @@
                 android:textColor="@color/putih"
                 android:fontFamily="@font/poppins_medium"
                 android:textSize="20sp"
-                android:text="transfer_saldo_ke">
+                android:text="transfer saldo ke ">
             </TextView>
 
             <TextView

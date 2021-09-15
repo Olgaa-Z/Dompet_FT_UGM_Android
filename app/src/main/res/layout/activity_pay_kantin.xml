@@ -86,27 +86,29 @@
             android:layout_marginEnd="20dp"
             app:cardCornerRadius="20sp">
 
+
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <androidx.core.widget.NestedScrollView
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:id="@+id/scrollView6" android:fillViewport="true">
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
+                        <ListView
+                            android:id="@+id/listmenu"
+                            android:layout_margin="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </ListView>
                         <TextView
                             android:layout_margin="10dp"
                             android:id="@+id/isipesanan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                        </TextView>
-                        <TextView
-                            android:layout_margin="10dp"
-                            android:id="@+id/isimenu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                         </TextView>
@@ -136,19 +138,12 @@
                                     android:layout_height="wrap_content">
                                 </TextView>
                             </TableRow>
-
                         </TableLayout>
                     </LinearLayout>
-                </androidx.core.widget.NestedScrollView>
-
-
-
-
-
-
-
-
+                </ScrollView>
             </LinearLayout>
+
+
 
         </androidx.cardview.widget.CardView>
 
@@ -167,13 +162,6 @@
             android:textColor="@color/putih">
 
         </Button>
-
-        <TextView
-            android:id="@+id/total_promo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </TextView>
 
     </LinearLayout>
 
@@ -195,7 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semi"
-                android:text="Total Bayar :"
+                android:text="Total Pay :"
                 android:textColor="@color/hitam"
                 android:textSize="16sp">
 

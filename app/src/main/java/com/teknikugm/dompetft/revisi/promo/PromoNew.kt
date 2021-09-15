@@ -4,7 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teknikugm.dompetft.R
 import com.teknikugm.dompetft.pembayaran.DataItemPromo
@@ -22,10 +26,13 @@ class PromoNew : AppCompatActivity() {
 
     private var key= "hasil"
     private var result : String?= null
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_promo_new)
+
+        progressBar = findViewById(R.id.pbpromo)
 
         var selectedPromo = intent.getStringExtra("kode_promo")
 
@@ -43,7 +50,6 @@ class PromoNew : AppCompatActivity() {
 
 
     fun list_promo(selectedPromo: String?) {
-
         ApiClient().getApiService(this).promonew()
             .enqueue(object : retrofit2.Callback<List<DataItemPromoNew>>{
 
@@ -51,6 +57,7 @@ class PromoNew : AppCompatActivity() {
                     call: Call<List<DataItemPromoNew>>,
                     response: Response<List<DataItemPromoNew>>
                 ) {
+                    showLoading()
                     if (response.isSuccessful) {
                         val dataItem: List<DataItemPromoNew?>? = response.body()
                         if (dataItem?.size!! > 0) {
@@ -60,7 +67,7 @@ class PromoNew : AppCompatActivity() {
                             gambarpromo.setImageResource(R.drawable.icon_pricetag)
                             Toast.makeText(
                                 applicationContext,
-                                "tidak ada promo",
+                                "there is no promo",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -74,6 +81,7 @@ class PromoNew : AppCompatActivity() {
                         }
                         rv.layoutManager = LinearLayoutManager(this@PromoNew)
                         rv.adapter = adapter
+                        hideLoading()
                     }
                 }
 
@@ -83,6 +91,15 @@ class PromoNew : AppCompatActivity() {
 
 
             })
+
+    }
+
+    fun showLoading() {
+        progressBar.visibility
+    }
+
+     fun hideLoading() {
+         progressBar.setVisibility(View.GONE)
     }
 
     companion object {

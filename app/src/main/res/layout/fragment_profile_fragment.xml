@@ -93,11 +93,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Saldo"
-                    android:textSize="16sp"
                     android:fontFamily="@font/poppins_semi"
+                    android:text="Balance"
                     android:textColor="@color/hitam"
-                    android:layout_centerVertical="true">
+                    android:textSize="16sp">
 
                 </TextView>
 
@@ -137,7 +136,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ID user"
+                    android:text="User ID"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins_semi"
                     android:textColor="@color/hitam">

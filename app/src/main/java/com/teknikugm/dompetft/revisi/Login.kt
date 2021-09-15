@@ -44,13 +44,13 @@ class Login : AppCompatActivity() {
             val pas = passwordlogin.text.toString()
 
             if (us.isEmpty()){
-                usernamelogin.error = "Mohon Diisi"
+                usernamelogin.error = "Please fill in"
                 usernamelogin.requestFocus()
                 return@setOnClickListener
             }
 
             if (pas.isEmpty()){
-                passwordlogin.error = "Mohon Diisi"
+                passwordlogin.error = "Please fill in"
                 passwordlogin.requestFocus()
                 return@setOnClickListener
             }
@@ -64,7 +64,7 @@ class Login : AppCompatActivity() {
                 .enqueue(object : Callback<LoginResponse> {
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                         // Error logging in
-                        Toast.makeText(this@Login,"gagal login\n"+t.toString(),Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@Login,"Login Failed \n"+t.toString(),Toast.LENGTH_LONG).show()
 //                        progressBar.visibility = View.GONE
                         Log.d("Coba",t.toString())
                     }
@@ -80,7 +80,7 @@ class Login : AppCompatActivity() {
 
                         } else {
                             // Error logging in
-                            Toast.makeText(this@Login,"username/password salah",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@Login,"wrong username or password",Toast.LENGTH_SHORT).show()
                         }
 //                        progressBar.visibility = View.GONE
                     }
@@ -111,7 +111,7 @@ class Login : AppCompatActivity() {
         }
 
         this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, "Tekan tombol kembali lagi untuk keluar", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Press the back button again to exit", Toast.LENGTH_SHORT).show()
 
         Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }

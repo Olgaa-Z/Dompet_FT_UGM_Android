@@ -30,7 +30,6 @@
             android:fontFamily="@font/poppins_semi"
             android:textSize="20sp"
             android:layout_marginStart="30dp">
-
         </TextView>
 
     </LinearLayout>
@@ -38,7 +37,7 @@
     <com.budiyev.android.codescanner.CodeScannerView
         android:id="@+id/scanner_view"
         android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_height="400dp"
         android:layout_marginTop="130dp"
         app:autoFocusButtonColor="@color/birudongker"
         app:autoFocusButtonVisible="true"
@@ -55,11 +54,24 @@
         app:frameThickness="5dp"
         app:maskColor="@color/background"/>
 
+    <Button
+        android:id="@+id/transferusername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Transfer Pakai Username"
+        android:layout_below="@id/scanner_view"
+        android:fontFamily="@font/poppins_semi"
+        android:background="@drawable/tombol_oren"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
+
+    </Button>
+
     <TextView
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Scan QR Code to Pay for Canteen!"
-        android:layout_below="@id/scanner_view"
+        android:layout_below="@id/transferusername"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/poppins_semi"
         android:textColor="@color/hitam"

@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bayar Kantin"
+            android:text="Pay for Canteen"
             android:textColor="@color/putih"
             android:fontFamily="@font/poppins_semi"
             android:textSize="20sp"

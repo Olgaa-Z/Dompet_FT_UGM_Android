@@ -62,13 +62,13 @@ class TopupSaldo : AppCompatActivity() {
                         if(response.isSuccessful){
                             if (response.isSuccessful){
                                 AlertDialog.Builder(this@TopupSaldo)
-                                        .setMessage("Topup Saldo berhasil...")
+                                        .setMessage("Topup Balance was successful")
                                         .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
 //                                                        clearData()
                                             startActivity(Intent(applicationContext, MainActivity::class.java))
                                         }
                                         .show()
-                                Toast.makeText(this@TopupSaldo, "topup berhasil", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@TopupSaldo, "Topup Balance was successful", Toast.LENGTH_SHORT).show()
 
                             }else{
                                 Toast.makeText(this@TopupSaldo, "test error", Toast.LENGTH_SHORT).show()

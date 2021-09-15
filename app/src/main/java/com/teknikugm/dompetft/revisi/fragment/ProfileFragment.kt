@@ -80,11 +80,11 @@ class ProfileFragment : Fragment() {
 
         buttonlogoutprofil.setOnClickListener(){
             AlertDialog.Builder(context )
-                    .setMessage("Yakin untuk logout?")
-                    .setPositiveButton("Ya") { dialog, whichButton ->
+                    .setMessage("Are You Sure to Logout?")
+                    .setPositiveButton("Yes") { dialog, whichButton ->
                         signout()
                     }
-                    .setNegativeButton("Batal") { dialog, whichButton ->
+                    .setNegativeButton("Cancel") { dialog, whichButton ->
                     }
                     .show()
 

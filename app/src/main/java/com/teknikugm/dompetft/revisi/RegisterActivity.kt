@@ -29,43 +29,43 @@ class RegisterActivity : AppCompatActivity() {
             val pas1 = passwordregister.text.toString()
             val pas2 = confirmpasswordregister.text.toString()
             if (us.isEmpty()){
-                usernameregister.error = "Mohon Diisi"
+                usernameregister.error = "Please fill in"
                 usernameregister.requestFocus()
                 return@setOnClickListener
             }
 
             if (us.contains(" ",false)){
-                usernameregister.error = "Jangan gunakan spasi"
+                usernameregister.error = "Don't use spaces"
                 usernameregister.requestFocus()
                 return@setOnClickListener
             }
 
             if (em.isEmpty()){
-                emailregister.error = "Mohon Diisi"
+                emailregister.error = "Please fill in"
                 emailregister.requestFocus()
                 return@setOnClickListener
             }
 
             if (pas1.isEmpty()){
-                passwordregister.error = "Mohon Diisi"
+                passwordregister.error = "Please fill in"
                 passwordregister.requestFocus()
                 return@setOnClickListener
             }
 
             if (pas2.isEmpty()){
-                confirmpasswordregister.error = "Mohon Diisi"
+                confirmpasswordregister.error = "Please fill in"
                 confirmpasswordregister.requestFocus()
                 return@setOnClickListener
             }
 
             if (pas2!=pas1){
-                confirmpasswordregister.error = "password tidak sama"
+                confirmpasswordregister.error = "passwords are not the same"
                 confirmpasswordregister.requestFocus()
                 return@setOnClickListener
             }
 
             if (pas1.length < 8){
-                passwordregister.error = "Minimal 8 karakter, gunakan kombinasi huruf dan angka"
+                passwordregister.error = "Minimum 8 characters, use a combination of letters and numbers"
                 passwordregister.requestFocus()
                 return@setOnClickListener
             }
@@ -91,12 +91,12 @@ class RegisterActivity : AppCompatActivity() {
                     val registerResponse = response.body()
 
                     if (registerResponse?.key != null) {
-                        Toast.makeText(this@RegisterActivity,"register berhasil", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@RegisterActivity,"registration has been successful", Toast.LENGTH_SHORT).show()
                         startActivity(intent)
                         finish()
                     } else {
                         // Error logging in
-                        Toast.makeText(this@RegisterActivity,"register gagal\npassword terlalu umum, gunakan kombinasi huruf dan angka", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@RegisterActivity,"register Failed\npassword is too general, use a combination of letters and numbers", Toast.LENGTH_SHORT).show()
                     }
 
                 }
@@ -114,7 +114,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, "Tekan tombol kembali lagi untuk keluar", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Press the back button again to exit", Toast.LENGTH_SHORT).show()
 
         Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
